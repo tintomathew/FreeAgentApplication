@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /**
+  ~  * Created by tinto on 16/11/2022, 11:09
+  ~  * Copyright (c) 2022 . All rights reserved.
+  ~  * Last modified 16/11/2022, 10:39
+  ~  */
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="clickHandler"
+            type="com.tinto.freeagentapplication.listeners.CurrencyItemClick" />
+
+        <variable
+            name="position"
+            type="Integer" />
+
+        <variable
+            name="currencyModel"
+            type="com.tinto.freeagentapplication.model.CurrencyModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_5dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/radius_5dp"
+        app:cardElevation="@dimen/elevation_5dp"
+        android:background="@{currencyModel.isSelected? @color/teal_200 : @color/white}"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        android:onClick="@{(v)-> clickHandler.onCurrencyRateClick(currencyModel, position)}">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/padding_5dp">
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title"
+                android:layout_width="@dimen/zero_width"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_5dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="@{currencyModel.name}"
+                android:textSize="@dimen/text_20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/value"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="GBP" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/value"
+                android:layout_width="@dimen/zero_width"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_5dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="@{currencyModel.value.toString()}"
+                android:textSize="@dimen/text_20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/title"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="96.6" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</layout>

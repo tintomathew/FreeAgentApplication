@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /**
+  ~  * Created by tinto on 16/11/2022, 11:10
+  ~  * Copyright (c) 2022 . All rights reserved.
+  ~  * Last modified 15/11/2022, 09:59
+  ~  */
+  -->
+
+<resources>
+    <style name="SpinnerTheme">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>

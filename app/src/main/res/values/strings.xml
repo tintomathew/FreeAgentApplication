@@ -1,0 +1,26 @@
+<!--
+  ~ /**
+  ~  * Created by tinto on 16/11/2022, 11:10
+  ~  * Copyright (c) 2022 . All rights reserved.
+  ~  * Last modified 16/11/2022, 09:02
+  ~  */
+  -->
+
+<resources>
+    <string name="app_name">FreeAgentApplication</string>
+    <string name="history">History</string>
+    <string name="something_went_wrong">Something went wrong! please try again later</string>
+    <string name="default_currency">EUR</string>
+    <string name="select_currency">Select any currency to continue</string>
+    <string-array name="currency_array">
+        <item>EUR</item>
+        <item>USD</item>
+        <item>JPY</item>
+        <item>GBP</item>
+        <item>AUD</item>
+        <item>CAD</item>
+        <item>CHF</item>
+        <item>CNY</item>
+        <item>SEK</item>
+    </string-array>
+</resources>
