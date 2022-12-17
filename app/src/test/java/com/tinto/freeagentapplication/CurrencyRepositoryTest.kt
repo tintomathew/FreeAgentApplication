@@ -1,10 +1,10 @@
 package com.tinto.freeagentapplication
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.tinto.freeagentapplication.model.CurrencyDateModel
-import com.tinto.freeagentapplication.model.RateModel
-import com.tinto.freeagentapplication.model.Rates
-import com.tinto.freeagentapplication.repository.CurrencyRepository
+import com.tinto.freeagentapplication.data.repo.model.CurrencyDateModel
+import com.tinto.freeagentapplication.data.repo.model.RateModel
+import com.tinto.freeagentapplication.data.repo.model.Rates
+import com.tinto.freeagentapplication.data.repo.CurrencyRepository
 import com.tinto.freeagentapplication.service.CurrencyApiService
 import com.tinto.freeagentapplication.util.Resource
 import io.mockk.coEvery

@@ -6,6 +6,6 @@
  *
  */
 
-package com.tinto.freeagentapplication.model
+package com.tinto.freeagentapplication.data.model
 
 data class HistoryRateModel(var date: String, var rates: String)

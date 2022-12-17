@@ -8,7 +8,7 @@
 
 package com.tinto.freeagentapplication.listeners
 
-import com.tinto.freeagentapplication.model.CurrencyModel
+import com.tinto.freeagentapplication.data.repo.model.CurrencyModel
 
 // click listener for currency item click */
 interface CurrencyItemClick {

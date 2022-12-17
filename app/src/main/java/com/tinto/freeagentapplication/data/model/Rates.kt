@@ -6,7 +6,7 @@
  *
  */
 
-package com.tinto.freeagentapplication.model
+package com.tinto.freeagentapplication.data.repo.model
 
 import com.google.gson.annotations.SerializedName
 

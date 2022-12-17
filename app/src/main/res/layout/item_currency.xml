@@ -22,7 +22,7 @@
 
         <variable
             name="currencyModel"
-            type="com.tinto.freeagentapplication.model.CurrencyModel" />
+            type="com.tinto.freeagentapplication.data.repo.model.CurrencyModel" />
     </data>
 
     <androidx.cardview.widget.CardView

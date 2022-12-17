@@ -21,10 +21,10 @@
             android:id="@+id/navigate_to_history"
             app:destination="@id/history" />
     </fragment>
+
     <fragment
         android:id="@+id/history"
-        android:name="com.tinto.freeagentapplication.history.HistoryFragment"
-        android:label="History"
-        tools:layout="@layout/fragment_history">
+        android:name="com.tinto.freeagentapplication.history.HistoryActivity"
+        android:label="Compose History">
     </fragment>
 </navigation>

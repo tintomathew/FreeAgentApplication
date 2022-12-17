@@ -2,11 +2,12 @@ package com.tinto.freeagentapplication
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.tinto.freeagentapplication.home.MainViewModel
-import com.tinto.freeagentapplication.model.CurrencyDateModel
-import com.tinto.freeagentapplication.model.CurrencyModel
-import com.tinto.freeagentapplication.model.RateModel
-import com.tinto.freeagentapplication.model.Rates
-import com.tinto.freeagentapplication.repository.CurrencyRepository
+import com.tinto.freeagentapplication.data.repo.model.CurrencyDateModel
+import com.tinto.freeagentapplication.data.repo.model.CurrencyModel
+import com.tinto.freeagentapplication.data.repo.model.RateModel
+import com.tinto.freeagentapplication.data.repo.model.Rates
+import com.tinto.freeagentapplication.data.repo.CurrencyRepository
+import com.tinto.freeagentapplication.domain.usecase.CurrencyUseCase
 import com.tinto.freeagentapplication.util.Resource
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -37,6 +38,9 @@ class MainViewModelTest {
     var coroutinesTestRule = CoroutineTestRule()
 
     @MockK
+    var currencyUseCase: CurrencyUseCase = mockk()
+
+    @MockK
     var cakesRepository: CurrencyRepository = mockk()
 
     // class under test
@@ -45,7 +49,7 @@ class MainViewModelTest {
     @Before
     fun setup() {
         MockKAnnotations.init(this, relaxed = true)
-        viewModel = MainViewModel(cakesRepository)
+        viewModel = MainViewModel(currencyUseCase)
         viewModel.sdf = mockk()
         every { viewModel.sdf.format(any()) } returns "2022-11-11"
         every { viewModel.getStartDate() } returns "2022-11-11"

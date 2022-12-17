@@ -8,27 +8,33 @@
 
 package com.tinto.freeagentapplication.home
 
-import android.util.Log
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tinto.freeagentapplication.model.CurrencyModel
-import com.tinto.freeagentapplication.model.HistoryRateModel
-import com.tinto.freeagentapplication.model.Rates
-import com.tinto.freeagentapplication.repository.CurrencyRepository
+import com.tinto.freeagentapplication.data.model.HistoryRateModel
+import com.tinto.freeagentapplication.data.repo.model.CurrencyModel
+import com.tinto.freeagentapplication.data.repo.model.Rates
+import com.tinto.freeagentapplication.domain.usecase.CurrencyUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Date
 import javax.inject.Inject
 
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val currencyRepository: CurrencyRepository
+    private val currencyUseCase: CurrencyUseCase
 ) :
     ViewModel() {
+
+    private val _state = MutableStateFlow(emptyList<HistoryRateModel>())
+    val state: StateFlow<List<HistoryRateModel>>
+        get() = _state
 
     private val DATE_FORMAT = "yyyy-MM-dd"
     var sdf = SimpleDateFormat(DATE_FORMAT)
@@ -63,7 +69,7 @@ class MainViewModel @Inject constructor(
         isLoading.postValue(true)
         viewModelScope.launch {
             val response =
-                currencyRepository.getCurrencyRates(
+                currencyUseCase.getCurrencyRates(
                     "USD, EUR, JPY, GBP, AUD, CAD, CHF, CNY, SEK, NZD",
                     baseCurrency
                 )
@@ -97,7 +103,7 @@ class MainViewModel @Inject constructor(
         historyList.clear()
         isLoading.postValue(true)
         viewModelScope.launch {
-            val responseByDate = currencyRepository.getCurrencyRateByDate(
+            val responseByDate = currencyUseCase.getCurrencyRateByDate(
                 getStartDate(),
                 getCurrentDate(),
                 getFilterInput(),
@@ -107,6 +113,7 @@ class MainViewModel @Inject constructor(
                 responseByDate.data.rates.entries.forEach {
                     historyList.add(HistoryRateModel(it.key, getHistoryRate(it.value)))
                 }
+                _state.value = historyList
             }
 
             responseByDate.message?.let {
@@ -173,6 +180,10 @@ class MainViewModel @Inject constructor(
             }
         }
         return name
+    }
+
+    fun test() {
+        HomeFragmentDirections.navigateToHistory()
     }
 
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)

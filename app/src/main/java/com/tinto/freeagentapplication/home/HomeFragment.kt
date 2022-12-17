@@ -1,13 +1,14 @@
 /*
  * *
- *  * Created by tinto on 16/11/2022, 11:08
+ *  * Created by tinto on 17/12/2022, 22:35
  *  * Copyright (c) 2022 . All rights reserved.
- *  * Last modified 16/11/2022, 10:39
+ *  * Last modified 17/12/2022, 22:15
  *
  */
 
 package com.tinto.freeagentapplication.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,7 +25,8 @@ import com.tinto.freeagentapplication.R
 import com.tinto.freeagentapplication.adapter.CurrencyAdapter
 import com.tinto.freeagentapplication.databinding.FragmentHomeBinding
 import com.tinto.freeagentapplication.listeners.CurrencyItemClick
-import com.tinto.freeagentapplication.model.CurrencyModel
+import com.tinto.freeagentapplication.data.repo.model.CurrencyModel
+import com.tinto.freeagentapplication.history.HistoryActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 

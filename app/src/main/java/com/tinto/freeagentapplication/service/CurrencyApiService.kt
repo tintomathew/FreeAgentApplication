@@ -1,15 +1,15 @@
 /*
  * *
- *  * Created by tinto on 16/11/2022, 11:09
+ *  * Created by tinto on 24/11/2022, 13:26
  *  * Copyright (c) 2022 . All rights reserved.
- *  * Last modified 16/11/2022, 10:39
+ *  * Last modified 16/11/2022, 11:10
  *
  */
 
 package com.tinto.freeagentapplication.service
 
-import com.tinto.freeagentapplication.model.CurrencyDateModel
-import com.tinto.freeagentapplication.model.RateModel
+import com.tinto.freeagentapplication.data.repo.model.CurrencyDateModel
+import com.tinto.freeagentapplication.data.repo.model.RateModel
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

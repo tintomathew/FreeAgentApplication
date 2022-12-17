@@ -11,25 +11,28 @@ android {
 
     defaultConfig {
         applicationId "com.tinto.freeagentapplication"
-        minSdk 24
+        minSdk 26
         targetSdk 33
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "AUTH_KEY", "\"vY24whH6xc2XQpYaPIGQckBUSNWOjLbN\""
+            buildConfigField "String", "AUTH_KEY", "\"UN7vtt5EW9YneDM6B4pWBhJlbPNKv2S2\""
             buildConfigField "String", "BASE_URL", "\"https://api.apilayer.com/fixer/\""
         }
 
         debug {
             testCoverageEnabled true
-            buildConfigField "String", "AUTH_KEY", "\"UN7vtt5EW9YneDM6B4pWBhJlbPNKv2S2\""
+            buildConfigField "String", "AUTH_KEY", "\"vY24whH6xc2XQpYaPIGQckBUSNWOjLbN\""
             buildConfigField "String", "BASE_URL", "\"https://api.apilayer.com/fixer/\""
         }
     }
@@ -42,15 +45,29 @@ android {
     }
     buildFeatures {
         viewBinding true
+        compose true
     }
     dataBinding {
         enabled = true
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.3.2'
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
 }
 
 dependencies {
+    // When using a MDC theme
+    implementation "com.google.android.material:compose-theme-adapter:1.1.16"
 
-    implementation 'androidx.core:core-ktx:1.7.0'
+    // When using a AppCompat theme
+    implementation "com.google.accompanist:accompanist-appcompat-theme:0.25.1"
+
+    implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -58,12 +75,24 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
 
     implementation "com.google.dagger:hilt-android:$hilt_version"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
-    implementation 'androidx.databinding:databinding-common:4.2.2'
-    implementation 'androidx.test.ext:junit-ktx:1.1.3'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
+    implementation 'androidx.activity:activity-compose:1.5.1'
+    implementation platform('androidx.compose:compose-bom:2022.10.00')
+    implementation 'androidx.compose.ui:ui'
+    implementation 'androidx.compose.ui:ui-graphics'
+    implementation 'androidx.compose.ui:ui-tooling-preview'
+    implementation 'androidx.compose.material3:material3'
+    androidTestImplementation platform('androidx.compose:compose-bom:2022.10.00')
+    androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
+    debugImplementation 'androidx.compose.ui:ui-tooling'
+    debugImplementation 'androidx.compose.ui:ui-test-manifest'
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+    implementation 'androidx.databinding:databinding-common:7.3.1'
+    implementation 'androidx.test.ext:junit-ktx:1.1.4'
 
     testImplementation "io.mockk:mockk:1.13.2"
     testImplementation "androidx.arch.core:core-testing:2.1.0"
@@ -72,8 +101,11 @@ dependencies {
         exclude group: "org.jetbrains.kotlinx", module: "kotlinx-coroutines-debug"
     }
 
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1'
+    implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
+
     // for adding recyclerview
-    implementation 'androidx.recyclerview:recyclerview:1.2.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
     // for adding cardview
     implementation 'androidx.cardview:cardview:1.0.0'
@@ -91,6 +123,6 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 }

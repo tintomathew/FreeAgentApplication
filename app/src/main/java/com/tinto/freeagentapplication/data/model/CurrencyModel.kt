@@ -6,7 +6,7 @@
  *
  */
 
-package com.tinto.freeagentapplication.model
+package com.tinto.freeagentapplication.data.repo.model
 
 data class CurrencyModel(
     var isSelected: Boolean = false,

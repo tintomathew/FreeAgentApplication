@@ -13,7 +13,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.tinto.freeagentapplication.databinding.ItemCurrencyBinding
 import com.tinto.freeagentapplication.listeners.CurrencyItemClick
-import com.tinto.freeagentapplication.model.CurrencyModel
+import com.tinto.freeagentapplication.data.repo.model.CurrencyModel
 
 
 class CurrencyAdapter(
