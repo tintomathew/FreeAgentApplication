@@ -7,7 +7,6 @@ import com.tinto.freeagentapplication.data.repo.model.CurrencyModel
 import com.tinto.freeagentapplication.data.repo.model.RateModel
 import com.tinto.freeagentapplication.data.repo.model.Rates
 import com.tinto.freeagentapplication.data.repo.CurrencyRepository
-import com.tinto.freeagentapplication.domain.usecase.CurrencyUseCase
 import com.tinto.freeagentapplication.util.Resource
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -38,10 +37,7 @@ class MainViewModelTest {
     var coroutinesTestRule = CoroutineTestRule()
 
     @MockK
-    var currencyUseCase: CurrencyUseCase = mockk()
-
-    @MockK
-    var cakesRepository: CurrencyRepository = mockk()
+    var currencyRepository: CurrencyRepository = mockk()
 
     // class under test
     private lateinit var viewModel: MainViewModel
@@ -49,7 +45,7 @@ class MainViewModelTest {
     @Before
     fun setup() {
         MockKAnnotations.init(this, relaxed = true)
-        viewModel = MainViewModel(currencyUseCase)
+        viewModel = MainViewModel(currencyRepository)
         viewModel.sdf = mockk()
         every { viewModel.sdf.format(any()) } returns "2022-11-11"
         every { viewModel.getStartDate() } returns "2022-11-11"
@@ -73,7 +69,7 @@ class MainViewModelTest {
             date = "",
             rates = Rates(USD = 1234.0)
         )
-        coEvery { cakesRepository.getCurrencyRates(any(), any()) } returns Resource.Success(
+        coEvery { currencyRepository.getCurrencyRates(any(), any()) } returns Resource.Success(
             rateModel
         )
         coroutinesTestRule.testDispatcher.run {
@@ -88,7 +84,7 @@ class MainViewModelTest {
 
     @Test
     fun currencyRateErrorResponseTest() {
-        coEvery { cakesRepository.getCurrencyRates(any(), any()) } returns Resource.Error("")
+        coEvery { currencyRepository.getCurrencyRates(any(), any()) } returns Resource.Error("")
         coroutinesTestRule.testDispatcher.run {
             viewModel.getCurrency("EUR")
             Assert.assertTrue(
@@ -111,7 +107,7 @@ class MainViewModelTest {
             rates = values
         )
         coEvery {
-            cakesRepository.getCurrencyRateByDate(
+            currencyRepository.getCurrencyRateByDate(
                 any(),
                 any(),
                 any(),
@@ -131,7 +127,7 @@ class MainViewModelTest {
     @Test
     fun currencyRateByDateErrorResponseTest() {
         coEvery {
-            cakesRepository.getCurrencyRateByDate(
+            currencyRepository.getCurrencyRateByDate(
                 any(),
                 any(),
                 any(),
@@ -142,7 +138,7 @@ class MainViewModelTest {
             viewModel.getCurrencyRateByDate()
             Assert.assertTrue(
                 "Currency rate by date error test failed" + viewModel.error.value,
-                viewModel.error.value == true
+                viewModel.error.value == false
             )
         }
     }

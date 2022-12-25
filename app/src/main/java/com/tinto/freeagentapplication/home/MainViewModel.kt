@@ -13,9 +13,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tinto.freeagentapplication.data.model.HistoryRateModel
+import com.tinto.freeagentapplication.data.repo.CurrencyRepository
 import com.tinto.freeagentapplication.data.repo.model.CurrencyModel
 import com.tinto.freeagentapplication.data.repo.model.Rates
-import com.tinto.freeagentapplication.domain.usecase.CurrencyUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -28,7 +28,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val currencyUseCase: CurrencyUseCase
+    private val currencyRepository: CurrencyRepository
 ) :
     ViewModel() {
 
@@ -69,7 +69,7 @@ class MainViewModel @Inject constructor(
         isLoading.postValue(true)
         viewModelScope.launch {
             val response =
-                currencyUseCase.getCurrencyRates(
+                currencyRepository.getCurrencyRates(
                     "USD, EUR, JPY, GBP, AUD, CAD, CHF, CNY, SEK, NZD",
                     baseCurrency
                 )
@@ -103,7 +103,7 @@ class MainViewModel @Inject constructor(
         historyList.clear()
         isLoading.postValue(true)
         viewModelScope.launch {
-            val responseByDate = currencyUseCase.getCurrencyRateByDate(
+            val responseByDate = currencyRepository.getCurrencyRateByDate(
                 getStartDate(),
                 getCurrentDate(),
                 getFilterInput(),
