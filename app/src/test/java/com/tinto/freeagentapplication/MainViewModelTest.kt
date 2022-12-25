@@ -138,7 +138,7 @@ class MainViewModelTest {
             viewModel.getCurrencyRateByDate()
             Assert.assertTrue(
                 "Currency rate by date error test failed" + viewModel.error.value,
-                viewModel.error.value == false
+                viewModel.error.value == true
             )
         }
     }
