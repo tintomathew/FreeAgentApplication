@@ -114,6 +114,7 @@ class MainViewModelTest {
                 any()
             )
         } returns Resource.Success(currencyDateModel)
+
         coroutinesTestRule.testDispatcher.run {
             viewModel.getCurrencyRateByDate()
             Assert.assertEquals(
