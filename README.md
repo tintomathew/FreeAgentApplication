@@ -6,4 +6,4 @@ Clean architecture used to build the app with Hilt as dependency injection frame
 
 Introduced Compose for currency history screen where the data is listed using LazyColumn. 
 
-Introduced Github actions to run the test cases.
+Introduced Github actions to run the test cases
