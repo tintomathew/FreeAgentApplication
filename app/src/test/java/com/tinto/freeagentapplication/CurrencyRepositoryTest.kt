@@ -68,7 +68,7 @@ class CurrencyRepositoryTest {
         )
         runBlocking {
             val response = cakesRepository.getCurrencyRates("", "")
-            Assert.assertTrue("Currency rate error message test failed", response is Resource.Error)
+            Assert.assertTrue("Currency rate error message test failed$response", response is Resource.Error)
         }
     }
 
@@ -93,7 +93,7 @@ class CurrencyRepositoryTest {
         runBlocking {
             val response = cakesRepository.getCurrencyRateByDate("", "", "", "")
             Assert.assertEquals(
-                "Currency rate by date Success test failed",
+                "Currency rate by date Success test failed"+response.data.toString(),
                 currencyDateModel,
                 response.data
             )

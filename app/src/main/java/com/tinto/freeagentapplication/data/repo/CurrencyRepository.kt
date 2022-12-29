@@ -39,11 +39,9 @@ class CurrencyRepository @Inject constructor(private val currencyApiService: Cur
     private fun responseToResource(dataModel: Response<RateModel>): Resource<RateModel> {
         if (dataModel.isSuccessful) {
             dataModel.body()?.let { result ->
-                Log.d("Repoo::",":::"+dataModel.body())
                 return Resource.Success(result)
             }
         }
-        Log.d("Repoo::","::MMM:"+dataModel.message())
         return Resource.Error(dataModel.message())
     }
 
