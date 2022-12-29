@@ -8,6 +8,7 @@
 
 package com.tinto.freeagentapplication.home
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,17 +17,20 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
+import com.core.di.Navigator
+import com.tinto.freeagentapplication.MainActivity
 import com.tinto.freeagentapplication.util.Extensions.isNetWorkConnected
 import com.tinto.freeagentapplication.R
 import com.tinto.freeagentapplication.adapter.CurrencyAdapter
 import com.tinto.freeagentapplication.databinding.FragmentHomeBinding
 import com.tinto.freeagentapplication.listeners.CurrencyItemClick
 import com.tinto.freeagentapplication.data.repo.model.CurrencyModel
-import com.tinto.freeagentapplication.history.HistoryActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -35,6 +39,8 @@ class HomeFragment : Fragment(), CurrencyItemClick, AdapterView.OnItemSelectedLi
     private val viewModel: MainViewModel by activityViewModels()
     private lateinit var currencyAdapter: CurrencyAdapter
     private lateinit var binding: FragmentHomeBinding
+    // This dependency could be satisfied by the injector (Not implemented in that example)
+   // private lateinit var navigatorProvider: Navigator.Provider
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,7 +59,16 @@ class HomeFragment : Fragment(), CurrencyItemClick, AdapterView.OnItemSelectedLi
 
         initialSetup()
         setUpSpinner()
+     //   configureObservables()
     }
+
+//    private fun configureObservables() {
+//        observe(viewModel.navigateTo) { screenEvent ->
+//            screenEvent.getContentIfNotHandled()?.let { screen ->
+//                //navigatorProvider.get(screen).navigate(this.requireActivity())
+//            }
+//        }
+//    }
 
     /* setting the observers and making the network call to get the data */
     private fun initialSetup() {
@@ -80,9 +95,15 @@ class HomeFragment : Fragment(), CurrencyItemClick, AdapterView.OnItemSelectedLi
                 Toast.makeText(this.context, getString(R.string.select_currency), Toast.LENGTH_LONG)
                     .show()
             } else {
-                findNavController().navigate(
-                    HomeFragmentDirections.navigateToHistory()
-                )
+//                findNavController().navigate(
+//                    HomeFragmentDirections.navigateToHistory()
+//                )
+
+                val filterInput = viewModel.getFilterInput()
+                val request = NavDeepLinkRequest.Builder
+                    .fromUri("android-app://example.google.app/music_home/${filterInput}".toUri())
+                    .build()
+                findNavController().navigate(request)
             }
         })
     }
@@ -128,4 +149,17 @@ class HomeFragment : Fragment(), CurrencyItemClick, AdapterView.OnItemSelectedLi
     override fun onNothingSelected(parent: AdapterView<*>?) {
         TODO("Not yet implemented")
     }
+    companion object {
+
+        fun launch(activity: Activity) {
+            val intent = Intent(activity, MainActivity::class.java)
+            activity.startActivity(intent)
+        }
+    }
 }
+
+object GoToHomeScreen : Navigator {
+
+    override fun navigate(activity: Activity) { HomeFragment.launch(activity) }
+}
+

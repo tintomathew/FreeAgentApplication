@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /**
+  ~  * Created by tinto on 29/12/2022, 19:14
+  ~  * Copyright (c) 2022 . All rights reserved.
+  ~  * Last modified 29/12/2022, 19:14
+  ~  */
+  -->
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="true"
+        android:supportsRtl="true" />
+
+</manifest>

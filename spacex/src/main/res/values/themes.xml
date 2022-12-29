@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /**
+  ~  * Created by tinto on 18/12/2022, 21:16
+  ~  * Copyright (c) 2022 . All rights reserved.
+  ~  * Last modified 18/12/2022, 21:16
+  ~  */
+  -->
+
+<resources>
+
+    <style name="Theme.FreeAgentApplication" parent="android:Theme.Material.Light.NoActionBar" />
+</resources>

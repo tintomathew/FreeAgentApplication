@@ -1,6 +1,6 @@
 package com.tinto.freeagentapplication
 
-import com.tinto.freeagentapplication.di.DispatcherProvider
+import com.music.di.DispatcherProvider
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

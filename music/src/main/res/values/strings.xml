@@ -1,0 +1,20 @@
+<!--
+  ~ /**
+  ~  * Created by tinto on 21/12/2022, 15:30
+  ~  * Copyright (c) 2022 . All rights reserved.
+  ~  * Last modified 21/12/2022, 15:30
+  ~  */
+  -->
+
+<resources>
+    <string name="app_name">Music</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="something_went_wrong">Something went wrong, please try again</string>
+    <string name="search_hint_text">Search your favorite here..</string>
+    <string name="hint_title">"Title : "</string>
+    <string name="hint_artist">"Artist : "</string>
+    <string name="hint_type">"Type : "</string>
+    <string name="filter_by_artist">Filter by Artist</string>
+    <string name="clear_filter">Clear Filter</string>
+</resources>

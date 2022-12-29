@@ -14,3 +14,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "FreeAgentApplication"
 include ':app'
+include ':spacex'
+include ':core'
+include ':music'
+include ':coretest'

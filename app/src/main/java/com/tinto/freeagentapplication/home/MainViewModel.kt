@@ -8,10 +8,14 @@
 
 package com.tinto.freeagentapplication.home
 
+import android.util.Log
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.core.di.Event
+import com.core.di.Navigator
+import com.core.di.Screen
 import com.tinto.freeagentapplication.data.model.HistoryRateModel
 import com.tinto.freeagentapplication.data.repo.CurrencyRepository
 import com.tinto.freeagentapplication.data.repo.model.CurrencyModel
@@ -54,9 +58,15 @@ class MainViewModel @Inject constructor(
     // hold the selected currency value
     var selectedCurrency: String = "EUR"
 
+    val navigateTo = MutableLiveData<Event<Screen>>()
+
     init {
         isLoading.postValue(true)
         error.postValue(false)
+    }
+
+    fun onNavigateButtonClick() {
+        navigateTo.value = Event(Screen.SpaceXScreen("12"))
     }
 
     /**
@@ -73,6 +83,7 @@ class MainViewModel @Inject constructor(
                     "USD, EUR, JPY, GBP, AUD, CAD, CHF, CNY, SEK, NZD",
                     baseCurrency
                 )
+            Log.d("Dataaa:::",":::"+response)
             response.data?.let {
                 responseData.clear()
                 responseData.add(CurrencyModel(false, "USD", it.rates?.USD))
@@ -88,6 +99,7 @@ class MainViewModel @Inject constructor(
             }
 
             response.message?.let {
+                Log.d("Dataaa:::", "error:::$it")
                 error.postValue(true)
             }
             isLoading.postValue(false)

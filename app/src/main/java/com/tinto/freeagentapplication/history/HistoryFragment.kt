@@ -55,7 +55,7 @@ import com.tinto.freeagentapplication.util.Extensions.isNetWorkConnected
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HistoryActivity : Fragment() {
+class HistoryFragment: Fragment() {
     private val viewModel: MainViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

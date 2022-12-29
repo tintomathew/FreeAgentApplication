@@ -1,17 +1,50 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    ext.hilt_version = '2.42'
+    ext.hilt_version = '2.44'
     ext.nav_version = "2.5.2"
+    ext.multidex_version = "2.0.1"
+    ext.kotlin_version = '1.6.10'
+
+    ext.nav_version = "2.5.3"
+    ext.retrofit = "2.9.0"
+    ext.okhttp3 = "4.2.1"
+    ext.okhttp3_alpha = "5.0.0-alpha.2"
+    ext.picasso = "2.5.2"
+    ext.card_view = "1.0.0"
+    ext.recyclerview = "1.2.1"
+    ext.espresso_core = "3.5.0"
+    ext.junit = "4.13.2"
+    ext.androidx_junit = "1.1.4"
+    ext.runtime_ktx = "2.5.1"
+    ext.core_ktx = "1.9.0"
+    ext.appcompat = "1.5.1"
+    ext.constraintlayout = "2.1.4"
+    ext.databinding = "7.3.1"
+    ext.lifecycle = "2.5.1"
+    ext.mockk = "1.13.2"
+    ext.core_testing = "2.1.0"
+    ext.coroutines_test = "1.6.4"
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+        maven {
+            url 'https://maven.google.com'
+        }
+        google()
+    }
+
     dependencies {
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version")
+        classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21'
     }
 }
 
 plugins {
-    id 'com.android.application' version '7.3.0' apply false
-    id 'com.android.library' version '7.3.0' apply false
+    id 'com.android.application' version '7.3.1' apply false
+    id 'com.android.library' version '7.3.1' apply false
     id 'org.jetbrains.kotlin.android' version '1.7.20' apply false
 }
 

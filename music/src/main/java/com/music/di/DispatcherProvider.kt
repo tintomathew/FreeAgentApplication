@@ -1,12 +1,12 @@
 /*
  * *
- *  * Created by tinto on 16/11/2022, 11:07
+ *  * Created by Tinto Mathew on 24/11/2022, 21:16
  *  * Copyright (c) 2022 . All rights reserved.
- *  * Last modified 16/11/2022, 10:39
+ *  * Last modified 24/11/2022, 21:16
  *
  */
 
-package com.tinto.freeagentapplication.di
+package com.music.di
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -19,4 +19,3 @@ interface DispatcherProvider {
     fun unconfined(): CoroutineDispatcher = Dispatchers.Unconfined
 
 }
-

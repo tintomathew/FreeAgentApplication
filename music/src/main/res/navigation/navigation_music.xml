@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /**
+  ~  * Created by tinto on 21/12/2022, 15:34
+  ~  * Copyright (c) 2022 . All rights reserved.
+  ~  * Last modified 21/12/2022, 15:34
+  ~  */
+  -->
+
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/music_home"
+    android:id="@+id/navigation_music">
+
+    <fragment
+        android:id="@+id/music_home"
+        android:name="com.music.ui.main.home.MusicFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_music">
+        <argument
+            android:name="filterInput"
+            app:argType="string" />
+        <deepLink
+            app:uri="android-app://example.google.app/music_home/{filterInput}" />
+    </fragment>
+
+</navigation>

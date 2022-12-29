@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'org.jetbrains.kotlin.plugin.serialization'
     id("androidx.navigation.safeargs")
 }
 
@@ -20,20 +21,17 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+        multiDexEnabled true
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "AUTH_KEY", "\"UN7vtt5EW9YneDM6B4pWBhJlbPNKv2S2\""
-            buildConfigField "String", "BASE_URL", "\"https://api.apilayer.com/fixer/\""
         }
 
         debug {
             testCoverageEnabled true
-            buildConfigField "String", "AUTH_KEY", "\"vY24whH6xc2XQpYaPIGQckBUSNWOjLbN\""
-            buildConfigField "String", "BASE_URL", "\"https://api.apilayer.com/fixer/\""
         }
     }
     compileOptions {
@@ -75,8 +73,8 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
 
     implementation "com.google.dagger:hilt-android:$hilt_version"
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
-    implementation 'androidx.activity:activity-compose:1.5.1'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
+    implementation 'androidx.activity:activity-compose:1.6.1'
     implementation platform('androidx.compose:compose-bom:2022.10.00')
     implementation 'androidx.compose.ui:ui'
     implementation 'androidx.compose.ui:ui-graphics'
@@ -102,7 +100,6 @@ dependencies {
     }
 
     implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1'
-    implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
 
     // for adding recyclerview
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
@@ -122,7 +119,14 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
+    implementation project(':core')
+    implementation project(':spacex')
+    implementation project(':music')
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+
+    implementation "androidx.multidex:multidex:$multidex_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2"
 }

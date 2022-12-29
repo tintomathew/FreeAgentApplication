@@ -1,16 +1,14 @@
 /*
  * *
- *  * Created by tinto on 16/11/2022, 11:07
+ *  * Created by tinto on 19/12/2022, 10:52
  *  * Copyright (c) 2022 . All rights reserved.
- *  * Last modified 15/11/2022, 11:09
+ *  * Last modified 18/12/2022, 19:53
  *
  */
 
-package com.tinto.freeagentapplication.di
+package com.core.di
 
 import com.google.gson.GsonBuilder
-import com.tinto.freeagentapplication.BuildConfig
-import com.tinto.freeagentapplication.service.CurrencyApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,7 +31,7 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideRetrofitInstance(client: OkHttpClient): Retrofit {
-        return Retrofit.Builder().baseUrl(BuildConfig.BASE_URL).client(client)
+        return Retrofit.Builder().baseUrl("https://api.apilayer.com/fixer/").client(client)
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
             .build()
     }
@@ -60,15 +58,8 @@ object NetworkModule {
             val requestBuilder = it.request().newBuilder()
                 .addHeader("content-type", "text/plain;charset=UTF-8")
                 .addHeader("authorization", "application/json")
-                .addHeader("apikey", BuildConfig.AUTH_KEY)
+                .addHeader("apikey", "K3ExV2sDpWnNak41VD1PTiFClftN0HMx")
             it.proceed(requestBuilder.build())
         }
-    }
-
-
-    @Provides
-    @Singleton
-    fun provideImageApiService(retrofit: Retrofit): CurrencyApiService {
-        return retrofit.create(CurrencyApiService::class.java)
     }
 }
