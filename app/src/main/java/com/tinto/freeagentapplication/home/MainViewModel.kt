@@ -83,7 +83,6 @@ class MainViewModel @Inject constructor(
                     "USD, EUR, JPY, GBP, AUD, CAD, CHF, CNY, SEK, NZD",
                     baseCurrency
                 )
-            Log.d("Dataaa:::",":::"+response)
             response.data?.let {
                 responseData.clear()
                 responseData.add(CurrencyModel(false, "USD", it.rates?.USD))
@@ -99,7 +98,6 @@ class MainViewModel @Inject constructor(
             }
 
             response.message?.let {
-                Log.d("Dataaa:::", "error:::$it")
                 error.postValue(true)
             }
             isLoading.postValue(false)
